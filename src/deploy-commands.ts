@@ -1,10 +1,10 @@
 import { REST, Routes } from 'discord.js';
-import { commands } from './commands';
+import { commands } from './packages/discord/commands';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-const commandJson = Array.from(commands.values()).map((c) => c.data.toJSON());
+const commandJson = commands.map((c) => c.toJSON());
 
 const rest = new REST().setToken(process.env.DISCORD_TOKEN!);
 
