@@ -1,6 +1,8 @@
 import { Client, Events } from 'discord.js';
-import { token } from '../config.json';
 import { WaitListManager } from './waitlist-manager';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 const client = new Client({ intents: [] });
 const waitListManager = new WaitListManager();
@@ -13,7 +15,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
   await waitListManager.handleInteraction(interaction);
 });
 
-client.login(token);
+client.login(process.env.DISCORD_TOKEN!);
 
 console.log('Bot is starting...');
 console.log(client);
